@@ -1,9 +1,41 @@
-@import 'tailwindcss';
-
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../../vendor/laravel/breeze/src/../resources/views/**/*.blade.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-coffee-50: #fdf6f0;
+    --color-coffee-100: #f9e8d5;
+    --color-coffee-200: #f2c99b;
+    --color-coffee-300: #e8a55e;
+    --color-coffee-400: #d4852a;
+    --color-coffee-500: #b8651a;
+    --color-coffee-600: #974f14;
+    --color-coffee-700: #7a3d10;
+    --color-coffee-800: #5c2d0c;
+    --color-coffee-900: #3d1d08;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d4852a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b8651a; }
+
+/* Smooth transitions */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Focus ring */
+input:focus, select:focus, textarea:focus, button:focus-visible {
+    outline: 2px solid #b8651a;
+    outline-offset: 2px;
+}
+
+/* Button transitions */
+button { transition: all 0.15s ease; }
+
+/* Print styles */
+@media print {
+    .no-print { display: none !important; }
 }
