@@ -2,7 +2,7 @@
     <div x-data="kasirDashboard({{ $pendingCount }})" x-init="init()" class="flex flex-col lg:flex-row gap-6">
         <div class="flex-1 space-y-4">
             <div class="flex items-center justify-between">
-                <h2 class="font-bold text-lg text-coffee-800">
+                <h2 class="font-heading text-xl text-coffee-800">
                     Antrian Pesanan
                     <span x-show="pendingCount > 0" class="text-sm bg-yellow-400 text-yellow-900 px-2 py-0.5 rounded-full ml-1" x-text="pendingCount"></span>
                 </h2>
@@ -95,7 +95,7 @@
         <div class="lg:w-80 space-y-4">
             <div class="bg-white rounded-xl border border-coffee-100 shadow-sm">
                 <div class="p-4 border-b border-coffee-100">
-                    <h3 class="font-bold text-sm text-coffee-800">Kelola Menu</h3>
+                    <h3 class="font-heading text-base text-coffee-800">Kelola Menu</h3>
                     <p class="text-xs text-coffee-400">Toggle Sold Out</p>
                 </div>
                 <div class="p-3 space-y-1 max-h-[60vh] overflow-y-auto">
@@ -127,7 +127,7 @@
              @click.self="showPaymentModal = false">
             <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
                 <div class="p-6">
-                    <h3 class="font-bold text-lg text-coffee-800 mb-4">Konfirmasi Pembayaran</h3>
+                    <h3 class="font-heading text-xl text-coffee-800 mb-4">Konfirmasi Pembayaran</h3>
                     <div id="payment-order-summary" class="space-y-2 text-sm mb-4"></div>
                     <div class="space-y-3">
                         <div>

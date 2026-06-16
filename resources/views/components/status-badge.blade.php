@@ -1,17 +1,17 @@
 @props(['status', 'label' => null])
 
 @php
-    $colors = [
-        'pending' => 'bg-yellow-100 text-yellow-800',
-        'processing' => 'bg-blue-100 text-blue-800',
-        'ready' => 'bg-green-100 text-green-800',
-        'completed' => 'bg-gray-100 text-gray-700',
-        'cancelled' => 'bg-red-100 text-red-700',
+    $config = [
+        'pending' => ['class' => 'badge-warning', 'icon' => '🕐'],
+        'processing' => ['class' => 'badge-info', 'icon' => '👨‍🍳'],
+        'ready' => ['class' => 'badge-success', 'icon' => '✅'],
+        'completed' => ['class' => 'badge-success', 'icon' => '💳'],
+        'cancelled' => ['class' => 'badge-danger', 'icon' => '❌'],
     ];
-    $class = $colors[$status] ?? 'bg-gray-100 text-gray-600';
+    $cfg = $config[$status] ?? ['class' => 'bg-gray-100 text-gray-600', 'icon' => ''];
     $displayLabel = $label ?? ucfirst($status);
 @endphp
 
-<span {{ $attributes->merge(['class' => 'text-xs font-semibold px-2 py-1 rounded-full ' . $class]) }}>
-    {{ $displayLabel }}
+<span {{ $attributes->merge(['class' => 'badge ' . $cfg['class']]) }}>
+    {{ $cfg['icon'] }}&nbsp;{{ $displayLabel }}
 </span>

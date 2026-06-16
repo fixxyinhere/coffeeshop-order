@@ -1,14 +1,19 @@
 <x-layouts.customer :table="$table">
     <div class="px-4 py-8 text-center">
         <!-- Order Number -->
-        <div class="mb-6">
-            <p class="text-sm text-coffee-500 mb-1">Nomor Antrian</p>
-            <h1 class="text-3xl font-black text-coffee-800 tracking-wider">{{ $order->order_number }}</h1>
+        <div class="mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-coffee-100 text-coffee-600 mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+            </div>
+            <p class="text-sm font-medium text-coffee-500 mb-1 uppercase tracking-wider">Nomor Antrian</p>
+            <h1 class="font-heading text-4xl text-coffee-800">{{ $order->order_number }}</h1>
         </div>
 
         <!-- Progress Indicator -->
-        <div class="max-w-xs mx-auto mb-8" x-data="orderStatus('{{ $order->status }}', {{ $order->id }})">
-            <div class="space-y-6">
+        <div class="max-w-sm mx-auto mb-8" x-data="orderStatus('{{ $order->status }}', {{ $order->id }})">
+            <div class="card p-6 space-y-6">
                 @php
                     $steps = [
                         'pending' => ['label' => 'Pesanan Diterima', 'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'],
@@ -44,11 +49,13 @@
                  x-transition:enter="transition ease-out duration-500"
                  x-transition:enter-start="scale-75 opacity-0"
                  x-transition:enter-end="scale-100 opacity-100"
-                 class="mt-8 p-6 bg-green-50 border-2 border-green-300 rounded-2xl">
-                <svg class="w-12 h-12 mx-auto text-green-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 class="text-xl font-bold text-green-700 mb-1">Pesanan Kamu Siap!</h3>
+                 class="mt-8 p-8 bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300 rounded-2xl shadow-lg">
+                <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-4 animate-bounce">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 class="font-heading text-2xl text-green-700 mb-2">Pesanan Kamu Siap!</h3>
                 <p class="text-sm text-green-600">Silakan ke kasir untuk mengambil pesanan.</p>
             </div>
 
@@ -56,14 +63,24 @@
                  x-transition:enter="transition ease-out duration-500"
                  x-transition:enter-start="scale-75 opacity-0"
                  x-transition:enter-end="scale-100 opacity-100"
-                 class="mt-8 p-6 bg-gray-50 border-2 border-gray-300 rounded-2xl">
-                <h3 class="text-lg font-bold text-gray-700">Pesanan Selesai</h3>
-                <p class="text-sm text-gray-500">Terima kasih telah memesan di Coffeeshop Order!</p>
+                 class="mt-8 p-8 bg-gradient-to-br from-gray-50 to-coffee-50 border-2 border-coffee-200 rounded-2xl shadow-lg">
+                <div class="w-16 h-16 mx-auto bg-coffee-500 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="font-heading text-2xl text-coffee-700 mb-2">Pesanan Selesai</h3>
+                <p class="text-sm text-coffee-600">Terima kasih! Selamat menikmati ☕</p>
             </div>
 
-            <div x-show="currentStatus === 'cancelled'" class="mt-8 p-6 bg-red-50 border-2 border-red-300 rounded-2xl">
-                <h3 class="text-lg font-bold text-red-700">Pesanan Dibatalkan</h3>
-                <p class="text-sm text-red-600">Silakan hubungi kasir untuk informasi lebih lanjut.</p>
+            <div x-show="currentStatus === 'cancelled'" class="mt-8 p-8 bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-300 rounded-2xl shadow-lg">
+                <div class="w-16 h-16 mx-auto bg-red-500 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </div>
+                <h3 class="font-heading text-2xl text-red-700 mb-2">Pesanan Dibatalkan</h3>
+                <p class="text-sm text-red-600">Silakan hubungi kasir untuk info lebih lanjut.</p>
             </div>
         </div>
 

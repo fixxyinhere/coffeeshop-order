@@ -15,7 +15,7 @@
     <div class="px-4 py-4 space-y-6">
         @foreach ($categories as $category)
             <section id="cat-{{ $category->id }}">
-                <h2 class="font-bold text-lg text-coffee-800 mb-3">{{ $category->name }}</h2>
+                <h2 class="font-heading text-xl text-coffee-800 mb-3">{{ $category->name }}</h2>
                 <div class="grid grid-cols-2 gap-3">
                     @foreach ($category->menuItems as $item)
                         <div class="bg-white rounded-xl border border-coffee-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
@@ -58,7 +58,7 @@
          x-transition:leave-end="translate-y-full"
          class="fixed inset-0 z-50 flex flex-col bg-white">
         <div class="bg-coffee-800 text-white px-4 py-3 flex items-center justify-between">
-            <h2 class="font-bold text-lg" x-text="customizeItem?.name"></h2>
+            <h2 class="font-heading text-xl" x-text="customizeItem?.name"></h2>
             <button @click="showingCustomize = false" class="p-1 hover:bg-coffee-700 rounded">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

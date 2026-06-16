@@ -1,7 +1,7 @@
 <x-layouts.admin>
     <div x-data="menuForm()">
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-coffee-800">Tambah Menu</h2>
+            <h2 class="font-heading text-2xl text-coffee-800">Tambah Menu</h2>
         </div>
 
         <form action="{{ route('admin.menu.store') }}" method="POST" enctype="multipart/form-data" class="bg-white rounded-xl border border-coffee-100 p-6 shadow-sm max-w-2xl">

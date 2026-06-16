@@ -1,6 +1,6 @@
 <x-layouts.admin>
     <div>
-        <h2 class="text-2xl font-bold text-coffee-800 mb-6">Edit Kategori: {{ $category->name }}</h2>
+        <h2 class="font-heading text-2xl text-coffee-800 mb-6">Edit Kategori: {{ $category->name }}</h2>
         <form action="{{ route('admin.categories.update', $category) }}" method="POST" class="bg-white rounded-xl border border-coffee-100 p-6 shadow-sm max-w-lg">
             @csrf @method('PUT')
             <div class="space-y-4">

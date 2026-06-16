@@ -7,7 +7,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
@@ -16,16 +16,16 @@
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
         <aside class="w-64 bg-coffee-800 text-white flex-shrink-0 hidden md:flex flex-col">
-            <div class="p-4 border-b border-coffee-700">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">☕</span>
+            <div class="p-5 border-b border-coffee-700/50">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">☕</span>
                     <div>
-                        <h1 class="font-bold text-sm">Coffeeshop Order</h1>
-                        <p class="text-xs text-coffee-300">Panel Admin</p>
+                        <h1 class="font-heading text-lg leading-tight text-white">Coffeeshop</h1>
+                        <p class="text-[11px] text-coffee-300 font-medium tracking-wide">Panel Admin</p>
                     </div>
                 </div>
             </div>
-            <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+            <nav class="flex-1 overflow-y-auto p-3 space-y-0.5">
                 <a href="{{ route('admin.dashboard') }}"
                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition {{ request()->routeIs('admin.dashboard') ? 'bg-coffee-700 text-white' : 'text-coffee-200 hover:bg-coffee-700/50 hover:text-white' }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@
                     Laporan
                 </a>
             </nav>
-            <div class="p-3 border-t border-coffee-700">
+            <div class="p-3 border-t border-coffee-700/50">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-coffee-200 hover:bg-coffee-700 hover:text-white w-full transition">
@@ -84,12 +84,12 @@
 
         <!-- Mobile header -->
         <div class="md:hidden fixed top-0 left-0 right-0 z-30 bg-coffee-800 text-white px-4 py-3 flex items-center justify-between">
-            <button onclick="document.getElementById('mobileSidebar').classList.toggle('hidden')" class="p-1">
+            <button onclick="document.getElementById('mobileSidebar').classList.toggle('hidden')" class="p-1.5 hover:bg-coffee-700 rounded-lg">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
-            <span class="font-bold text-sm">☕ Coffeeshop Order</span>
+            <span class="font-heading text-base">☕ Coffeeshop</span>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="text-xs">Logout</button>
@@ -101,7 +101,7 @@
             <div class="absolute inset-0 bg-black/50" onclick="document.getElementById('mobileSidebar').classList.add('hidden')"></div>
             <div class="absolute left-0 top-0 bottom-0 w-64 bg-coffee-800 p-4">
                 <div class="flex items-center justify-between mb-4 border-b border-coffee-700 pb-4">
-                    <span class="font-bold text-white">Menu</span>
+                    <span class="font-heading text-white text-lg">Menu</span>
                     <button onclick="document.getElementById('mobileSidebar').classList.add('hidden')" class="text-coffee-300">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -122,23 +122,23 @@
         <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-hidden md:pt-0 pt-14">
             @if (session('success'))
-                <div class="bg-green-100 border-b border-green-200 text-green-800 px-6 py-3 text-sm flex items-center gap-2">
-                    <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-emerald-50 border-b border-emerald-200 text-emerald-800 px-6 py-3 text-sm flex items-center gap-2.5">
+                    <svg class="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    {{ session('success') }}
+                    <span>{{ session('success') }}</span>
                 </div>
             @endif
             @if (session('error'))
-                <div class="bg-red-100 border-b border-red-200 text-red-800 px-6 py-3 text-sm flex items-center gap-2">
+                <div class="bg-red-50 border-b border-red-200 text-red-800 px-6 py-3 text-sm flex items-center gap-2.5">
                     <svg class="w-5 h-5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    {{ session('error') }}
+                    <span>{{ session('error') }}</span>
                 </div>
             @endif
 
-            <main class="flex-1 overflow-y-auto p-6">
+            <main class="flex-1 overflow-y-auto p-6 bg-[#f8f5f1]">
                 {{ $slot }}
             </main>
         </div>

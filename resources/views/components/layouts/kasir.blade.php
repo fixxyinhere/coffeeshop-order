@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
@@ -18,7 +18,7 @@
         <nav class="bg-coffee-800 text-white px-4 py-3 flex items-center justify-between shadow-md">
             <div class="flex items-center gap-3">
                 <span class="text-xl">☕</span>
-                <span class="font-bold text-sm">Coffeeshop Order</span>
+                <span class="font-heading text-base">Coffeeshop</span>
             </div>
             <div class="flex items-center gap-4">
                 <span class="text-sm text-coffee-200">{{ auth()->user()->name }}</span>

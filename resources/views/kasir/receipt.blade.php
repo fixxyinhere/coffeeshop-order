@@ -64,7 +64,7 @@
 <body>
     <div class="receipt">
         <div class="text-center mb-3">
-            <div class="text-lg font-bold">☕ Coffeeshop Order</div>
+            <div class="font-heading text-xl">☕ Coffeeshop Order</div>
             <div class="text-sm">Jl. Coffee No. 123</div>
             <div class="text-sm">Telp: 0812-3456-7890</div>
         </div>
@@ -131,7 +131,7 @@
         <div class="border-b"></div>
 
         <div class="text-center mt-3">
-            <p class="font-bold text-lg">Terima Kasih!</p>
+            <p class="font-heading text-xl">Terima Kasih!</p>
             <p class="text-sm">Selamat menikmati pesanan Anda</p>
         </div>
 

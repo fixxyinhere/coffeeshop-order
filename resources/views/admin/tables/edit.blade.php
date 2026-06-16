@@ -1,6 +1,6 @@
 <x-layouts.admin>
     <div>
-        <h2 class="text-2xl font-bold text-coffee-800 mb-6">Edit Meja: {{ $table->table_number }}</h2>
+        <h2 class="font-heading text-2xl text-coffee-800 mb-6">Edit Meja: {{ $table->table_number }}</h2>
 
         <div class="grid md:grid-cols-2 gap-6">
             <form action="{{ route('admin.tables.update', $table) }}" method="POST" class="bg-white rounded-xl border border-coffee-100 p-6 shadow-sm">

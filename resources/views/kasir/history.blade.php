@@ -1,7 +1,7 @@
 <x-layouts.kasir>
     <div>
         <div class="flex items-center justify-between mb-6">
-            <h2 class="font-bold text-lg text-coffee-800">Riwayat Transaksi</h2>
+            <h2 class="font-heading text-xl text-coffee-800">Riwayat Transaksi</h2>
             <div class="text-right">
                 <p class="text-sm text-coffee-500">Total Pemasukan Hari Ini</p>
                 <p class="text-2xl font-black text-green-600">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>

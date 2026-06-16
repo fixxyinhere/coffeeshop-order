@@ -1,35 +1,26 @@
 <x-layouts.admin>
-    <div x-data="adminDashboard()" x-init="initCharts()">
-        <h2 class="text-2xl font-bold text-coffee-800 mb-6">Dashboard</h2>
+    <div x-data="adminDashboard()" x-init="initCharts()" class="max-w-7xl mx-auto">
+        <div class="mb-8">
+            <h2 class="font-heading text-3xl text-coffee-800">Dashboard</h2>
+            <p class="text-sm text-coffee-500 mt-1">Ringkasan bisnis {{ date('d F Y') }}</p>
+        </div>
 
         <!-- Stat Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <p class="text-xs text-coffee-500 mb-1">Pendapatan Hari Ini</p>
-                <p class="text-xl font-bold text-green-600">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
-            </div>
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <p class="text-xs text-coffee-500 mb-1">Transaksi Hari Ini</p>
-                <p class="text-xl font-bold text-coffee-800">{{ $totalTransactions }}</p>
-            </div>
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <p class="text-xs text-coffee-500 mb-1">Rata-rata Order</p>
-                <p class="text-xl font-bold text-blue-600">Rp {{ number_format($averageOrder, 0, ',', '.') }}</p>
-            </div>
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <p class="text-xs text-coffee-500 mb-1">Terlaris Hari Ini</p>
-                <p class="text-xl font-bold text-coffee-800 truncate">{{ $bestSeller ? $bestSeller->menu_item_name . ' (' . $bestSeller->total_qty . ')' : '-' }}</p>
-            </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+            <x-stat-card label="Pendapatan Hari Ini" value="Rp {{ number_format($totalRevenue, 0, ',', '.') }}" color="green" />
+            <x-stat-card label="Transaksi Hari Ini" value="{{ $totalTransactions }}" color="coffee" />
+            <x-stat-card label="Rata-rata Order" value="Rp {{ number_format($averageOrder, 0, ',', '.') }}" color="blue" />
+            <x-stat-card label="Terlaris" value="{{ $bestSeller ? $bestSeller->menu_item_name . ' ('.$bestSeller->total_qty.')' : '-' }}" color="purple" />
         </div>
 
         <!-- Charts -->
         <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <h3 class="font-semibold text-coffee-700 mb-4">Pendapatan 7 Hari Terakhir</h3>
+            <div class="card p-5">
+                <h3 class="font-heading text-lg text-coffee-800 mb-4">Pendapatan 7 Hari Terakhir</h3>
                 <canvas id="revenueChart" height="200"></canvas>
             </div>
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <h3 class="font-semibold text-coffee-700 mb-4">Jam Sibuk (Hari Ini)</h3>
+            <div class="card p-5">
+                <h3 class="font-heading text-lg text-coffee-800 mb-4">Jam Sibuk (Hari Ini)</h3>
                 <canvas id="peakHoursChart" height="200"></canvas>
             </div>
         </div>

@@ -1,8 +1,8 @@
 <x-layouts.admin>
     <div>
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-coffee-800">Menu</h2>
-            <a href="{{ route('admin.menu.create') }}" class="bg-coffee-700 hover:bg-coffee-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+            <h2 class="font-heading text-2xl text-coffee-800">Menu</h2>
+            <a href="{{ route('admin.menu.create') }}" class="btn-primary">
                 + Tambah Menu
             </a>
         </div>

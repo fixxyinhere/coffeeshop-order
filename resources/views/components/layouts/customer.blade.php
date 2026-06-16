@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
@@ -19,7 +19,7 @@
             <div class="flex items-center gap-2">
                 <span class="text-2xl">☕</span>
                 <div>
-                    <h1 class="font-bold text-sm leading-tight">Coffeeshop Order</h1>
+                    <h1 class="font-heading text-base leading-tight">Coffeeshop</h1>
                     <p class="text-xs text-coffee-200">Meja {{ $table->table_number }}</p>
                 </div>
             </div>
@@ -79,7 +79,7 @@
              x-transition:leave-end="translate-y-full"
              class="fixed inset-0 z-50 flex flex-col bg-white">
             <div class="bg-coffee-800 text-white px-4 py-3 flex items-center justify-between">
-                <h2 class="font-bold text-lg">Pesanan Kamu</h2>
+                <h2 class="font-heading text-xl">Pesanan Kamu</h2>
                 <button @click="showCart = false" class="p-1 hover:bg-coffee-700 rounded">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

@@ -1,6 +1,6 @@
 @props(['item'])
 
-<div class="bg-white rounded-xl border border-coffee-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="card overflow-hidden">
     <div class="relative">
         <img src="{{ $item->image_url }}"
              alt="{{ $item->name }}"

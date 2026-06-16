@@ -11,7 +11,7 @@
     $valueColor = $colors[$color] ?? $colors['coffee'];
 @endphp
 
-<div {{ $attributes->merge(['class' => 'bg-white rounded-xl border border-coffee-100 p-4 shadow-sm']) }}>
-    <p class="text-xs text-coffee-500 mb-1">{{ $label }}</p>
-    <p class="text-xl font-bold {{ $valueColor }}">{{ $value }}</p>
+<div {{ $attributes->merge(['class' => 'stat-card']) }}>
+    <p class="text-xs font-medium text-coffee-500 mb-1.5 uppercase tracking-wider">{{ $label }}</p>
+    <p class="text-2xl font-heading {{ $valueColor }}">{{ $value }}</p>
 </div>

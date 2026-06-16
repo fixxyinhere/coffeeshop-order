@@ -1,7 +1,7 @@
 <x-layouts.admin>
     <div>
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-coffee-800">Meja</h2>
+            <h2 class="font-heading text-2xl text-coffee-800">Meja</h2>
             <a href="{{ route('admin.tables.create') }}" class="bg-coffee-700 hover:bg-coffee-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
                 + Tambah Meja
             </a>
@@ -11,7 +11,7 @@
             @foreach ($tables as $table)
                 <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
                     <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-bold text-lg text-coffee-800">{{ $table->table_number }}</h3>
+                        <h3 class="font-heading text-xl text-coffee-800">{{ $table->table_number }}</h3>
                         <span class="text-xs font-semibold px-2 py-1 rounded-full
                             {{ $table->is_active ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
                             {{ $table->is_active ? 'Aktif' : 'Nonaktif' }}

@@ -1,7 +1,7 @@
 <x-layouts.admin>
     <div x-data="reportChart()">
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-coffee-800">Laporan Keuangan</h2>
+            <h2 class="font-heading text-2xl text-coffee-800">Laporan Keuangan</h2>
             <div class="flex gap-2">
                 <form action="{{ route('admin.reports.export') }}" method="GET" class="flex gap-2 items-center">
                     <input type="hidden" name="period" value="{{ $period }}">
@@ -51,34 +51,22 @@
         </form>
 
         <!-- Summary Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <p class="text-xs text-coffee-500">Total Pendapatan</p>
-                <p class="text-xl font-bold text-green-600">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
-            </div>
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <p class="text-xs text-coffee-500">Total Transaksi</p>
-                <p class="text-xl font-bold text-coffee-800">{{ $totalTransactions }}</p>
-            </div>
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <p class="text-xs text-coffee-500">Rata-rata Order</p>
-                <p class="text-xl font-bold text-blue-600">Rp {{ number_format($averageOrder, 0, ',', '.') }}</p>
-            </div>
-            <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm">
-                <p class="text-xs text-coffee-500">Item Terjual</p>
-                <p class="text-xl font-bold text-coffee-800">{{ $totalItemsSold }}</p>
-            </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+            <x-stat-card label="Total Pendapatan" value="Rp {{ number_format($totalRevenue, 0, ',', '.') }}" color="green" />
+            <x-stat-card label="Total Transaksi" value="{{ $totalTransactions }}" color="coffee" />
+            <x-stat-card label="Rata-rata Order" value="Rp {{ number_format($averageOrder, 0, ',', '.') }}" color="blue" />
+            <x-stat-card label="Item Terjual" value="{{ $totalItemsSold }}" color="purple" />
         </div>
 
         <!-- Revenue Trend Chart -->
-        <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm mb-6">
-            <h3 class="font-semibold text-coffee-700 mb-4">Tren Pendapatan</h3>
+        <div class="card p-5 mb-6">
+            <h3 class="font-heading text-lg text-coffee-800 mb-4">Tren Pendapatan</h3>
             <canvas id="revenueTrendChart" height="200"></canvas>
         </div>
 
         <!-- Top Products -->
-        <div class="bg-white rounded-xl border border-coffee-100 p-4 shadow-sm mb-6">
-            <h3 class="font-semibold text-coffee-700 mb-4">Produk Terlaris</h3>
+        <div class="card p-5 mb-6">
+            <h3 class="font-heading text-lg text-coffee-800 mb-4">Produk Terlaris</h3>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead>
