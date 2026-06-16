@@ -127,17 +127,22 @@ class ReportController extends Controller
 
     private function getRevenueTrend(Carbon $start, Carbon $end): array
     {
-        $days = $start->diffInDays($end) + 1;
+        $trend = [];
+        $current = $start->copy();
 
-        return collect(range(0, $days - 1))->map(function ($day) use ($start) {
-            $date = $start->copy()->addDays($day);
-            $revenue = Order::whereDate('created_at', $date)
+        while ($current->lte($end)) {
+            $revenue = Order::whereDate('created_at', $current)
                 ->where('status', 'completed')
                 ->sum('total');
-            return [
-                'date' => $date->format('d M'),
+
+            $trend[] = [
+                'date' => $current->format('d M'),
                 'revenue' => (float) $revenue,
             ];
-        })->toArray();
+
+            $current->addDay();
+        }
+
+        return $trend;
     }
 }

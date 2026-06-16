@@ -15,7 +15,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menuItems = MenuItem::with('category.options')
+        $menuItems = MenuItem::with(['category', 'options'])
             ->orderBy('category_id')
             ->orderBy('sort_order')
             ->paginate(15);
@@ -36,7 +36,7 @@ class MenuController extends Controller
             'name' => 'required|string|max:150',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'is_available' => 'boolean',
             'sort_order' => 'integer|min:0',
             'options' => 'nullable|array',
@@ -100,7 +100,7 @@ class MenuController extends Controller
             'name' => 'required|string|max:150',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'is_available' => 'boolean',
             'sort_order' => 'integer|min:0',
             'options' => 'nullable|array',

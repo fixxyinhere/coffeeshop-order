@@ -42,7 +42,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('menu', AdminMenuController::class);
-    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('categories', CategoryController::class);
     Route::resource('tables', AdminTableController::class);
     Route::resource('users', AdminUserController::class);
 

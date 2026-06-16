@@ -62,7 +62,7 @@ class MenuItem extends Model
             return $this->image;
         }
         if ($this->image) {
-            return asset('storage/menu/' . $this->image);
+            return asset('storage/' . $this->image);
         }
         return 'https://placehold.co/400x300';
     }

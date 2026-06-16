@@ -2,6 +2,11 @@
     <div x-data="menuForm({{ json_encode($menu->options->groupBy('option_group')->map(function($opts, $group) {
         return ['name' => $group, 'values' => $opts->map(fn($o) => ['id' => $o->id, 'value' => $o->option_value, 'price' => $o->price_modifier])->toArray()];
     })->values()) }})">
+        <div x-show="false">
+            <template x-for="id in deletedOptionIds" :key="id">
+                <input type="hidden" name="deleted_options[]" :value="id">
+            </template>
+        </div>
         <div class="flex items-center justify-between mb-6">
             <h2 class="text-2xl font-bold text-coffee-800">Edit Menu: {{ $menu->name }}</h2>
         </div>
@@ -52,6 +57,10 @@
                     @endif
                     <input type="file" name="image" accept="image/*"
                            class="w-full text-sm border-coffee-200 rounded-lg focus:border-coffee-500 focus:ring-coffee-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-coffee-50 file:text-coffee-700 hover:file:bg-coffee-100">
+                    <p class="text-xs text-coffee-500 mt-1.5">
+                        Format: <strong>JPEG, PNG, JPG, WebP</strong> — Maks: <strong>5MB</strong>
+                    </p>
+                    @error('image') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
@@ -74,22 +83,22 @@
                     <template x-for="(group, gIdx) in optionGroups" :key="gIdx">
                         <div class="bg-coffee-50 rounded-lg p-3 mb-3">
                             <div class="flex items-center justify-between mb-2">
-                                <input type="hidden" x-bind:name="'options[' + gIdx + '][id]'" x-model="group.id">
-                                <input type="text" x-model="group.name" :name="'options[' + gIdx + '][option_group]'" placeholder="Nama group"
+                                <input type="text" x-model="group.name" placeholder="Nama group"
                                        class="text-sm border-coffee-200 rounded-lg focus:border-coffee-500 focus:ring-coffee-500 w-48" required>
                                 <button type="button" @click="removeOptionGroup(gIdx)" class="text-red-500 hover:text-red-700 text-xs">Hapus</button>
                             </div>
                             <template x-for="(val, vIdx) in group.values" :key="vIdx">
                                 <div class="flex items-center gap-2 mb-1">
-                                    <input type="hidden" x-bind:name="'options[' + gIdx + '][id_' + vIdx + ']'">
-                                    <input type="text" x-model="val.value" :name="'options[' + gIdx + '][option_value][]'" placeholder="Nilai"
+                                    <input type="hidden" :name="'options[' + flatIdx(gIdx, vIdx) + '][id]'" :value="val.id || ''">
+                                    <input type="hidden" :name="'options[' + flatIdx(gIdx, vIdx) + '][option_group]'" :value="group.name">
+                                    <input type="text" x-model="val.value" :name="'options[' + flatIdx(gIdx, vIdx) + '][option_value]'" placeholder="Nilai"
                                            class="text-sm border-coffee-200 rounded-lg flex-1" required>
-                                    <input type="number" x-model="val.price" :name="'options[' + gIdx + '][price_modifier][]'" placeholder="+Rp"
+                                    <input type="number" x-model="val.price" :name="'options[' + flatIdx(gIdx, vIdx) + '][price_modifier]'" placeholder="+Rp"
                                            class="text-sm border-coffee-200 rounded-lg w-24" min="0">
-                                    <button type="button" @click="group.values.splice(vIdx, 1)" class="text-red-400 hover:text-red-600 text-xs">✕</button>
+                                    <button type="button" @click="removeOptionValue(gIdx, vIdx)" class="text-red-400 hover:text-red-600 text-xs">✕</button>
                                 </div>
                             </template>
-                            <button type="button" @click="group.values.push({value: '', price: 0})" class="text-xs text-coffee-500 hover:text-coffee-700 mt-1">
+                            <button type="button" @click="group.values.push({id: '', value: '', price: 0})" class="text-xs text-coffee-500 hover:text-coffee-700 mt-1">
                                 + Tambah Nilai
                             </button>
                         </div>
@@ -112,11 +121,35 @@
         function menuForm(existingGroups = []) {
             return {
                 optionGroups: existingGroups.length ? existingGroups : [],
-                addOptionGroup() {
-                    this.optionGroups.push({ id: '', name: '', values: [{ value: '', price: 0 }] });
+                deletedOptionIds: [],
+                get deletedOptionIdsJson() {
+                    return JSON.stringify(this.deletedOptionIds);
                 },
+
+                flatIdx(gIdx, vIdx) {
+                    let idx = 0;
+                    for (let i = 0; i < gIdx; i++) {
+                        idx += this.optionGroups[i].values.length;
+                    }
+                    return idx + vIdx;
+                },
+
+                addOptionGroup() {
+                    this.optionGroups.push({ name: '', values: [{ id: '', value: '', price: 0 }] });
+                },
+
                 removeOptionGroup(index) {
+                    const group = this.optionGroups[index];
+                    group.values.forEach(v => {
+                        if (v.id) this.deletedOptionIds.push(v.id);
+                    });
                     this.optionGroups.splice(index, 1);
+                },
+
+                removeOptionValue(gIdx, vIdx) {
+                    const val = this.optionGroups[gIdx].values[vIdx];
+                    if (val.id) this.deletedOptionIds.push(val.id);
+                    this.optionGroups[gIdx].values.splice(vIdx, 1);
                 }
             };
         }
